@@ -1,0 +1,110 @@
+.App {
+  padding: 0;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+body {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: 'no-repeat';
+  background-image: url('./images/space.jpg');
+}
+/* h1, p {
+  margin: 0px;
+  padding: 0px;
+} */
+.App {
+ position: relative;
+ height: 100vh;
+ width: 100%;
+  min-height: 100vh;
+  padding: 0 20px;
+  display: flex;
+
+}
+form.container {
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin: auto;
+  min-width: 440px;
+  padding: 40px;  
+}
+.container .col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+}
+h1 {
+  color: #fff;
+  padding: 15px 0px;
+}
+input:first {
+  margin-bottom: 20px;
+}
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px;  
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  letter-spacing: 1px;
+  font-size: 19px;
+  margin: 15px;
+}
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 15px;
+  background: radial-gradient(
+    ellipse at left bottom,
+    rgb(229, 229, 238) 0%,
+    rgba(38, 20, 72, 0.9) 59%,
+    rgba(17, 27, 75, 0.9) 100%
+  );
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 19px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: rgb(0, 255, 42);
+}
+.question {
+  color: #fff;
+  font-size: 14px;
+  text-align: end;
+}
+.registerLogin {
+  color: rgb(0, 162, 255);
+  cursor: pointer;
+}
+.register {
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  text-align: center;
+}
+.register {
+  display: none;
+}
+.register.success {
+  display: block;
+  color: rgb(0, 255, 42);
+}
+.register.exist {
+  display: block;
+  color: rgb(255, 0, 0);
+}
