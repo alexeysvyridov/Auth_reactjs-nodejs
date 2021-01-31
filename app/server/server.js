@@ -41,12 +41,15 @@ require('./passportConfig')(passport)
 //routes
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
-    if(err) throw err;
-    if(!user) res.send("No user exists");
+    if (err)  return next(err) 
+    if(!user) {
+      res.status(401).json({error:"No user exists"});
+      return next(err)
+    }
 
     else {
       req.logIn(user, err => {
-        if(err) throw err;
+        if (err)  return next(err)
         res.send("Successfuly Authenticated");
         console.log(req.user);
       });
@@ -55,18 +58,23 @@ app.post("/login", (req, res, next) => {
 });
 app.post("/register", (req, res) => {
  User.findOne({username: req.body.username}, async (err,doc) => {
-   if(err) throw err;
-   if(doc) res.send("User already exist");
-   if(!doc) {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-     const newUser = new User({
-       username: req.body.username,
-       password: hashedPassword
-     });
-     await newUser.save();
-     
-     res.send("User Created");
-   } 
+   try {
+     if(err) throw err;
+     if(doc) {
+      res.status(409).send("users already exist")
+     }
+     if(!doc) {
+      con st hashedPassword = await bcrypt.hash(req.body.password, 10);
+       const newUser = new User({
+         username: req.body.username,
+         password: hashedPassword
+       });
+       await newUser.save();
+       res.status(200).json({message:"User Created"});
+      } 
+   } catch (error) {
+     console.log(error);
+   }
  })
 });
 app.get("/user", (req, res) => {
