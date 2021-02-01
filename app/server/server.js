@@ -64,7 +64,7 @@ app.post("/register", (req, res) => {
       res.status(409).send("users already exist")
      }
      if(!doc) {
-      con st hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
        const newUser = new User({
          username: req.body.username,
          password: hashedPassword

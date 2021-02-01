@@ -1,8 +1,8 @@
 
 let initialState = {
-  user: {},
+  user: !!localStorage.getItem("user") || {},
   hasError: null,
-  isLogedIn: null
+  isLoggedIn: localStorage.getItem("user") || null
 }
 
 function reducer(state = initialState, action) {
@@ -13,10 +13,11 @@ function reducer(state = initialState, action) {
         user: action.payload
       }
     case 'LOGIN_SUCCESS': 
+    localStorage.setItem("user", JSON.stringify(action.payload))
       return {
         ...state,
+        isLoggedIn: true,
         hasError: false,
-        isLogedIn: true,
       }
     case 'LOGIN_FAILUR':
       return {

@@ -4,7 +4,11 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
 import {loginUser, request } from '../../actions';
 import {Link} from 'react-router-dom';
- const Login = ({dispatch,hasError, loginUser}) => {
+
+
+
+const Login = ({dispatch,hasError, loginUser}) => {
+  const [data, setData] = useState([]);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const submit = (e) => {

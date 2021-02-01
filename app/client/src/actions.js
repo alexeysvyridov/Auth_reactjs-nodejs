@@ -41,8 +41,17 @@ const errorRegister = (message) => {
     payload: message
   }
 }
+// const getUser = (user) => async(dispatch) =>{
+//   axios({
+//     method:'GET',
+//     url: 'http://localhost:4000/user',
+//     withCredentials:true
+//   }).then(res => {
+//     dispatch(request(res.data)) 
+//   })
+// };
+
 export const loginUser = (username, password) => async (dispatch) => {
-    dispatch(request({username, password}))
     try { 
       let resp = await axios({
       method:'POST',
@@ -53,7 +62,7 @@ export const loginUser = (username, password) => async (dispatch) => {
       },
       withCredentials:true
     }); 
-      dispatch(success(resp))
+      dispatch(success({username, password}))
       // clearFields()
       // setHasError(false)
     } catch (message) {
