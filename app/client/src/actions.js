@@ -70,7 +70,7 @@ export const loginUser = (username, password) => async (dispatch) => {
     }
   }
 
-  export const register = (username, password) => async (dispatch) => {
+  export const register = ({username, password}) => async (dispatch) => {
     dispatch(requestRegister({username, password}))
     try { 
       let resp = await axios({
@@ -82,7 +82,7 @@ export const loginUser = (username, password) => async (dispatch) => {
       },
       withCredentials:true
     }); 
-      dispatch(successRegister(resp))
+      dispatch(successRegister({username, password}))
     } catch (message) {
       dispatch(errorRegister(message))
     }

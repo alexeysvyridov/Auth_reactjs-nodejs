@@ -2,11 +2,15 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {register} from '../../actions';
-const Register = ({hasError}) => {
+const Register = ({hasError, register}) => {
   const [registerUsername, setRegisterUsername] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const submit = (e) => {
+    e.preventDefault()
+    register({username:registerUsername, password:registerPassword})
+  }
   return (
-    <form className="col" onSubmit={register}>
+    <form className="col" onSubmit={submit}>
       <h1>Register</h1>
       <input 
       type="text" 
